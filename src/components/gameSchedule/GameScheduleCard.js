@@ -36,7 +36,7 @@ class GameScheduleCard extends React.Component {
             console.log(s.gameId !== gameId);
             return s.gameId !== gameId;
         });
-        console.log(schedule);
+        console.log(schedule);m
         dispatch(setGameSchedules(schedule));
     }
 

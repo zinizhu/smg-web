@@ -1,4 +1,5 @@
 import React from 'react';
+const axios = require('axios');
 
 import { Link } from 'react-router-dom';
 import { Table } from 'react-bootstrap';
@@ -7,15 +8,23 @@ export class PlayerSummary extends React.Component {
     constructor(props) {
         super(props);
         this.state={
-            players:[{
-                id:1,
-                firstName: 'Zini',
-                lastName: 'Zhu',
-                playerNumber: 10,
-                position: 'PG/SG',
-                dateOfBirthday: '1996/08/25'
-            }]
+            players:[]
         }
+    }
+
+    componentDidMount() {
+        // retrieve player profiles
+        const url = `http://localhost:8080/api/profile`;
+        axios.get(url)
+            .then((response) => {
+                const data = response.data;
+                console.log(data);
+                this.setState({players: data});
+            })
+            .catch((e) => {
+                console.log('Fail to fetch player stats. (id = ', playerId, ')');
+                console.log(e);
+            })
     }
 
     render() {
