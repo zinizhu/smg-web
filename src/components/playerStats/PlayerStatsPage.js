@@ -65,35 +65,35 @@ export class PlayerStatsPage extends React.Component {
     constructor(props) {
         super(props);
 
-        // this.state = {
-        //     playerId: 0,
-        //     playerNumber: '-',
-        //     name: '',
-        //     position: '',
-        //     dateOfBirth: '',
-        //     average: {},
-        //     games: []
-        // }
-        this.state = mock;
+        this.state = {
+            playerId: 0,
+            playerNumber: '-',
+            name: '',
+            position: '',
+            dateOfBirth: '',
+            average: {},
+            games: []
+        }
+        //this.state = mock;
     }
 
-    // componentDidMount() {
-    //     // retrieve player stats
-    //     const playerId = this.props.match.params.id;
-    //     const url = `http://localhost:8080/api/playerStats/playerId/${playerId}`;
-    //     axios.get(url)
-    //         .then((response) => {
-    //             const data = response.data;
-    //             this.setState({...data});
-    //         })
-    //         .catch((e) => {
-    //             console.log('Fail to fetch player stats. (id = ', playerId, ')');
-    //             console.log(e);
-    //         })
-    // }
+    componentDidMount() {
+        // retrieve player stats
+        const playerId = this.props.match.params.id;
+        const url = `http://localhost:8080/api/playerStats/playerId/${playerId}`;
+        axios.get(url)
+            .then((response) => {
+                const data = response.data;
+                console.log(data);
+                this.setState({...data});
+            })
+            .catch((e) => {
+                console.log('Fail to fetch player stats. (id = ', playerId, ')');
+                console.log(e);
+            })
+    }
 
     render() {
-        //const playerId = this.props.match.params.id;
         const { playerId, playerNumber, name, position, dateOfBirth, average, games } = this.state;
         const rebound = average.defensiveRebound + average.offensiveRebound;
         return (
@@ -169,14 +169,20 @@ export class PlayerStatsPage extends React.Component {
                         {
                             games.map((game, idx) => {
                                 const { guestTeam, gameDate, assist, block, defensiveRebound, offensiveRebound, foul, point, fieldAttempt, fieldMade, threeAttempt, threeMade, turnover, steal, freeThrowAttempt, freeThrowMade } = game;
-                                const freeThrowPercentage = (freeThrowMade/freeThrowAttempt).toFixed(1);
-                                const fieldGoalPercentage = (fieldMade/fieldAttempt).toFixed(1);
-                                const threePercentage = (threeMade/threeAttempt).toFixed(1);
+                                const dateObj = new Date(gameDate);
+                                const year = dateObj.getFullYear();
+                                const month = dateObj.getMonth();
+                                const date = dateObj.getDate();
+                                const dateString = year+'/'+month+'/'+date;
+                                console.log("dateString",dateString);
+                                const freeThrowPercentage = freeThrowAttempt === 0 ? '-' : (freeThrowMade/freeThrowAttempt).toFixed(1);
+                                const fieldGoalPercentage = fieldAttempt === 0 ? '-' : (fieldMade/fieldAttempt).toFixed(1);
+                                const threePercentage = threeAttempt === 0 ? '-' : (threeMade/threeAttempt).toFixed(1);
                                 const rebound = defensiveRebound + offensiveRebound;
                                 return (
-                                    <React.Fragment key={idx}>
+                                    <React.Fragment>
                                         <tr>
-                                            <td>{gameDate}</td>
+                                            <td>{dateString}</td>
                                             <td>{guestTeam}</td>
                                             <td>{point}</td>
                                             <td>{fieldMade}</td>
