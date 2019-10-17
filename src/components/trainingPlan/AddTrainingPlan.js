@@ -143,7 +143,7 @@ export class AddTrainingPlan extends React.Component {
                                     );
                                 })
                             }
-                    <Button variant="primary"  onClick={this.onSubmit} >
+                    <Button variant="primary" type="submit">
                         Add
                     </Button>
                 </Form>

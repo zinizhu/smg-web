@@ -53,6 +53,4 @@ export class TrainingPlanSection extends React.Component {
             </React.Fragment>
         );
     }
-
-
 }

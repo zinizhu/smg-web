@@ -47,12 +47,14 @@ export class PlayerSummary extends React.Component {
                         {
                             players.map((player, idx) => {
                                 const playerIdPath = '/stats/' + player.id;
+                                const dateOfBirthObj = new Date(player.dateOfBirth);
+                                const dateOfBirth = dateOfBirthObj.getFullYear() + '/' + dateOfBirthObj.getMonth() + '/' + dateOfBirthObj.getDate();
                                 return (
                                         <tr key={idx}>
                                             <td><Link to={playerIdPath}>{player.firstName} {player.lastName}</Link></td>
                                             <td>{player.playerNumber}</td>
                                             <td>{player.position}</td>
-                                            <td>{player.dateOfBirthday}</td>
+                                            <td>{dateOfBirth}</td>
                                         </tr>
                                 );
                             })
