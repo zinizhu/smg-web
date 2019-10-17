@@ -3,6 +3,7 @@ import React from 'react';
 const axios = require('axios');
 
 import { TrainingPlanCard } from './TrainingPlanCard';
+import { AddTrainingPlan } from './AddTrainingPlan';
 
 export class TrainingPlanSection extends React.Component {
 
@@ -48,7 +49,7 @@ export class TrainingPlanSection extends React.Component {
                         );
                     })
                 }
-            
+                <AddTrainingPlan />
             </React.Fragment>
         );
     }

@@ -36,7 +36,7 @@ class GameScheduleCard extends React.Component {
             console.log(s.gameId !== gameId);
             return s.gameId !== gameId;
         });
-        console.log(schedule);m
+        console.log(schedule);
         dispatch(setGameSchedules(schedule));
     }
 
@@ -45,14 +45,15 @@ class GameScheduleCard extends React.Component {
     }
 
     render() {
-        const { guestTeam, score, guestScore, location, gameDate, buttonClicked } = this.state;
-        
+        const { gameId, guestTeam, score, guestScore, location, gameDate } = this.props;
+        const { buttonClicked } = this.state;
+        console.log('[Inside GameScheduleCard]', guestTeam, score, guestScore, location, gameDate);
         return (
             <div>
                 {
                     buttonClicked ? (
                         <AddGameSchedule 
-                            gameId={this.props.gameId}
+                            gameId={gameId}
                             guestTeam={guestTeam}
                             score={score}
                             guestScore={guestScore}
