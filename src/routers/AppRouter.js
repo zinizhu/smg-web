@@ -3,6 +3,8 @@ import { Router, BrowserRouter, Switch, Route, withRouter } from "react-router-d
 import Homepage from '../components/Homepage';
 import { Dashboard } from '../components/playerStats/Dashboard';
 import { PlayerStatsPage } from '../components/playerStats/PlayerStatsPage';
+import { TrainingPlanSection } from '../components/trainingPlan/TrainingPlanSection';
+import GameSchedules from '../components/gameSchedule/GameSchedules';
 import { createBrowserHistory } from 'history';
 
 const AppRouter = () => (
@@ -10,6 +12,8 @@ const AppRouter = () => (
         <div>
             <Switch>
                 <Route path="/" component={ Homepage } exact={true}/>
+                <Route path="/schedule" component={ GameSchedules } exact={true} />
+                <Route path="/trainingPlan" component={ TrainingPlanSection } exact={true} />
                 <Route path="/stats" component={ Dashboard } exact={true}/>
                 <Route path="/stats/:id" component={PlayerStatsPage} exact={true} />
             </Switch>

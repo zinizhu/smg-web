@@ -11,9 +11,8 @@ const loadGameSchedules = (dispatch, response) => {
     gameSchedules.map((schedule) => {
         let gameDateArr = schedule.gameDate.split(/[- T : .]/);
         console.log('Modified Date Arr:', gameDateArr);
-        gameDateArr[1]--;
 
-        schedule.gameDate = new Date(...gameDateArr.slice(0,6));
+        schedule.gameDate = gameDateArr.slice(0,6);
     })
 
     console.log('Modified schedules:', gameSchedules);
@@ -23,10 +22,9 @@ const loadGameSchedules = (dispatch, response) => {
 export const fetchGameSchedules = () => (dispatch) => {
     // fetch all game schedules from backend
     console.log('[GameSchedules] fetching game schedules...');
-    const date = new Date();
-    console.log('date:', date.toISOString());
     axios.get('http://localhost:8080/api/gameSchedule')
         .then((response) => {
+            console.log('response is', response);
             loadGameSchedules(dispatch, response);
         })
 };

@@ -3,9 +3,10 @@ const gameSchedulesDefaultState = {
 };
 
 export default (state = gameSchedulesDefaultState, action) => {
-    console.log('new schedules:', action.data);
+    
     switch (action.type) {
         case 'SET_GAME_SCHEDULES':
+            console.log('in reducer: new schedules:', action.data);
             return {
                 gameSchedules: action.data
             }

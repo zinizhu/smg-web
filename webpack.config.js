@@ -26,6 +26,12 @@ module.exports = (env) => {
                   {
                     loader: 'file-loader',
                   },
+                  {
+                    loader: 'url-loader',
+                    options: {
+                        limit: 8192
+                    }
+                }
                 ]
               },{
                 test: /\.s?css$/,
@@ -33,6 +39,17 @@ module.exports = (env) => {
                   'style-loader',
                   'css-loader',
                   'sass-loader'
+                ]
+              },{
+                test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+                use: [
+                  {
+                    loader: 'file-loader',
+                    options: {
+                      name: '[name].[ext]',
+                      outputPath: 'fonts/'
+                    }
+                  }
                 ]
               }]
         },

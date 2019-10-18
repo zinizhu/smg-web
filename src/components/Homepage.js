@@ -2,6 +2,8 @@ import React from 'react';
 import { Header } from './Header';
 import GameSchedules from './gameSchedule/GameSchedules';
 import { TrainingPlanSection } from './trainingPlan/TrainingPlanSection';
+import { TrainingPlanNavCard } from './trainingPlan/TrainingPlanNavCard';
+import  GameSchedulesNavBar  from './gameSchedule/GameSchedulesNavBar';
 
 import { Col, Row } from 'react-bootstrap';
 
@@ -14,15 +16,14 @@ export default class Homepage extends React.Component {
         
         return (
             <div>
+                <Header /> 
+                <GameSchedulesNavBar />
                 <Row>
-                    <Header /> 
-                </Row>
-                <Row>
-                    <Col xs={6}>
-                        <GameSchedules />   
+                    <Col xs={9}>
+                         something
                     </Col>
-                    <Col xs={6}>
-                        <TrainingPlanSection />
+                    <Col xs={3}>
+                        <TrainingPlanNavCard />
                     </Col>
                 </Row>
                 
@@ -31,3 +32,6 @@ export default class Homepage extends React.Component {
         );
     }
 }
+
+// <GameSchedules />   
+// <TrainingPlanSection />

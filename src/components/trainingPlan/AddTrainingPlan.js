@@ -52,6 +52,7 @@ export class AddTrainingPlan extends React.Component {
     }
 
     onDateChange = (date) => {
+        console.log('Date: ', date);
         this.setState({ date: date, dateSelected: false });
     };
 

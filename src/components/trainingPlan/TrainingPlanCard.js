@@ -36,8 +36,12 @@ export class TrainingPlanCard extends React.Component {
 
     render() {
         const { id, trainingPlans, date, summary  } = this.props;
-        const dateObj = new Date(date);
-        const dateString = dateObj.getFullYear() + '-' + dateObj.getMonth() + '-' + dateObj.getDay();
+        console.log('Init date', date.split('-'));
+        let dateArr = date.split(/[- T : .]/);
+
+        dateArr = dateArr.slice(0,6);
+        console.log('dateArr', dateArr);
+        const dateString = dateArr[0] + '/' + dateArr[1] + '/' + dateArr[2];
         
         return (
             <div>
@@ -49,11 +53,9 @@ export class TrainingPlanCard extends React.Component {
                                 trainingPlans && trainingPlans.length !== 0 &&
                                 trainingPlans.map((plan, idx) => {
                                     return (
-                                        <React.Fragment>
-                                            <div  key={idx}>
-                                                <li>{plan}</li>
-                                            </div>
-                                        </React.Fragment>
+                                        <div  key={idx}>
+                                            <li>{plan}</li>
+                                        </div>
                                     );
                                 })
                             }

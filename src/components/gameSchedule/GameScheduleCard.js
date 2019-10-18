@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 import { createBrowserHistory } from 'history';
 
 import AddGameSchedule from './AddGameSchedule';
-import { Button } from 'react-bootstrap';
+import { GameScheduleDisplayCard } from './GameScheduleDisplayCard';
+
 import { deleteGameScheduleById, setGameSchedules } from '../../actions/gameSchedules';
 
 
@@ -63,15 +64,15 @@ class GameScheduleCard extends React.Component {
                             onCancel={this.onCancel}
                         />
                     ) : (
-                        <React.Fragment>
-                            <p>guestTeam: {guestTeam}</p>
-                            <p>score: {score}</p>
-                            <p>guestScore: {guestScore}</p>
-                            <p>location: {location}</p>
-                            <p>Date: {gameDate.toLocaleString()}</p>
-                            <button onClick={this.onClickEdit}>Edit</button>
-                            <button onClick={this.onClickDelete}>Delete</button>
-                        </React.Fragment>
+                        <GameScheduleDisplayCard 
+                            guestTeam={guestTeam}
+                            score={score}
+                            guestScore={guestScore}
+                            location={location}
+                            gameDate={gameDate}
+                            onClickEdit={this.onClickEdit}
+                            onClickDelete={this.onClickDelete}
+                        />
                         )
                 }
                 </div>
