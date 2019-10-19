@@ -7,7 +7,7 @@ export const setGameSchedules = (gameSchedules) => ({
 
 const loadGameSchedules = (dispatch, response) => {
     var gameSchedules = response.data;
-    // format date
+    // format datel
     gameSchedules.map((schedule) => {
         let gameDateArr = schedule.gameDate.split(/[- T : .]/);
         console.log('Modified Date Arr:', gameDateArr);

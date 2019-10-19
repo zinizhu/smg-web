@@ -1,7 +1,7 @@
 import React from 'react';
-
 const axios = require('axios');
 
+import { NavBar } from '../NavBar';
 import { TrainingPlanCard } from './TrainingPlanCard';
 import { AddTrainingPlan } from './AddTrainingPlan';
 
@@ -33,23 +33,26 @@ export class TrainingPlanSection extends React.Component {
 
         return (
             <React.Fragment>
-                <h3> Training Plans</h3>
-                {
-                    plans && plans.length !== 0 && 
-                    plans.map((plan, idx) => {
-                        const { id, trainingPlans, summary, date } = plan;
-                        return (
-                            <TrainingPlanCard
-                                key={idx}
-                                id={id}
-                                trainingPlans={trainingPlans}
-                                summary={summary}
-                                date={date}
-                            />
-                        );
-                    })
-                }
-                <AddTrainingPlan />
+                <NavBar />
+                <div style={{ margin:"30px 30px" }}>
+                    <h3>Game Schedules</h3>
+                    {
+                        plans && plans.length !== 0 && 
+                        plans.map((plan, idx) => {
+                            const { id, trainingPlans, summary, date } = plan;
+                            return (
+                                <TrainingPlanCard
+                                    key={idx}
+                                    id={id}
+                                    trainingPlans={trainingPlans}
+                                    summary={summary}
+                                    date={date}
+                                />
+                            );
+                        })
+                    }
+                    <AddTrainingPlan />
+                </div>
             </React.Fragment>
         );
     }

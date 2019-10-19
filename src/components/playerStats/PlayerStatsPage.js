@@ -3,6 +3,7 @@ const axios = require('axios');
 import { Table, Row } from 'react-bootstrap';
 
 import { StatsGraph } from './StatsGraph';
+import { NavBar } from '../NavBar';
 
 // const mock = {
 //     playerId: 1,
@@ -169,6 +170,8 @@ export class PlayerStatsPage extends React.Component {
         const dateString = dateOfBirthObj.getUTCFullYear() + '/' + dateOfBirthObj.getMonth() + '/' + dateOfBirthObj.getDate();
         return (
             <div>
+                <NavBar />
+                <div style={{ margin:"30px 30px" }}>
                 <h3>{name}</h3>
 
                 <Table>
@@ -293,6 +296,7 @@ export class PlayerStatsPage extends React.Component {
                     this.preparePCTGraphData()
                 }
                 </Row>
+                </div>
             </div>
         );
     }

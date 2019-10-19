@@ -98,7 +98,8 @@ export class AddTrainingPlan extends React.Component {
         const { date, time, dateSelected, items } = this.state;
 
         return (
-            <div>
+            <div style={{ margin:"10px auto", padding:"10px 10px", borderStyle:"solid", borderColor:"#bdbdbd", borderWidth:"thick", borderRadius:"8px" }}>
+                <h3>Add New Training Plan</h3>
                 <Form onSubmit={this.onSubmit}>
                     <Form.Row>
                         <Form.Group as={Col} controlId="date">
@@ -133,7 +134,7 @@ export class AddTrainingPlan extends React.Component {
                                                 <Form.Control placeholder="" onChange={this.onInputChange} controlId={idx} value={item.content}/>
                                             </Form.Group>
                                             <Form.Group as={Col}>
-                                                <Button variant="primary" type="button" onClick={this.onAddNewItem} >
+                                                <Button variant="primary" type="button" onClick={this.onAddNewItem} style={{ marginRight: "5px" }}>
                                                     +
                                                 </Button>
                                                 <Button variant="primary" type="button" onClick={this.onDeleteItem} id={idx}>

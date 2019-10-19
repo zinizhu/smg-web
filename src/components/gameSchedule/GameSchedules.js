@@ -1,12 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 import GameScheduleCard from './GameScheduleCard';
 import { fetchGameSchedules } from '../../actions/gameSchedules';
 import AddGameSchedule from './AddGameSchedule';
 import { NavBar } from '../NavBar';
 
-import {  Col, Row } from 'react-bootstrap';
+import {  Col, Row, Button } from 'react-bootstrap';
 
 class GameSchedules extends React.Component {
     constructor(props) {
@@ -44,7 +45,7 @@ class GameSchedules extends React.Component {
                             const { gameId, guestTeam, score, guestScore, location, gameDate } = schedule;
                             console.log("Inside div, schedule: ", schedule);
                             return (
-                                <Col>
+                                <Col xs={4}>
                                     <GameScheduleCard 
                                         key={idx}
                                         gameId={gameId}
@@ -64,6 +65,11 @@ class GameSchedules extends React.Component {
                 <Row>
                     <Col xs={6}>
                         <AddGameSchedule />
+                    </Col>
+                </Row>
+                <Row style={{marginTop: "20px"}}>
+                    <Col>
+                        <Link style={{color:"#79a6d2"}} to='/'>Go Back</Link>
                     </Col>
                 </Row>
                 </div>

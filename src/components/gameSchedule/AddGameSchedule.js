@@ -22,6 +22,18 @@ class AddGameSchedule extends React.Component {
         }
     }
 
+    componentDidMount() {
+        const gameDate = this.props.gameDate;
+        if (gameDate === undefined) {
+            const dateObj = new Date();
+            const dateString = dateObj.getFullYear() + '/' + (dateObj.getMonth()+1) + '/' + dateObj.getDate();
+            this.setState({ gameDate: dateString });
+        }
+        else {
+            this.setState({ gameDate: gameDate[0] + '/' + gameDate[1] + '/' + gameDate[2] });
+        }
+    }
+
     onChange = (e) => {
         const id = e.target.id;
         const value = e.target.value;
@@ -31,8 +43,12 @@ class AddGameSchedule extends React.Component {
         this.setState({...stateObject});
     }
 
-    onDateChange = (date) => {
-        this.setState({ gameDate: date, dateSelected: false });
+    onDateChange = (dateObj) => {
+        console.log('selected date:', dateObj);
+        console.log('month:', dateObj.getMonth());
+        console.log('day:', dateObj.getDay());
+        const dateString = dateObj.getFullYear() + '/' + (dateObj.getMonth()+1) + '/' + dateObj.getDate();
+        this.setState({ gameDate: dateString, dateSelected: false });
     };
 
     onNumChange = (e) => {
@@ -64,7 +80,7 @@ class AddGameSchedule extends React.Component {
         const { dispatch } = this.props;
         const { guestTeam, location, gameDate, score, guestScore } = this.state;
         const gameId = this.props.gameId;
-        const gameDateString = gameDate.toISOString();
+        const gameDateString = (new Date(gameDate)).toISOString();
         const data = { gameId, guestTeam, location, score, guestScore, gameDate:gameDateString };
         console.log('New game schedule:', data);
         dispatch(addOrUpdateNewGameSchedule(data));
@@ -83,11 +99,11 @@ class AddGameSchedule extends React.Component {
                     
                         <Form.Group as={Col} controlId="gameDate">
                             <Form.Label>Game Date</Form.Label>
-                            <Form.Control placeholder="Guest Team" onChange={this.onChange} onFocus={this.onFocus} value={this.state.gameDate.toLocaleDateString()}/>
+                            <Form.Control placeholder="Guest Team" onChange={this.onChange} onFocus={this.onFocus} value={this.state.gameDate}/>
                             {
                                 this.state.dateSelected && 
                                 <Calendar   
-                                    value={this.state.gameDate}
+                                    value={new Date()}
                                     onChange={this.onDateChange}
                                 />
                             }

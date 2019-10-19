@@ -44,24 +44,20 @@ export class TrainingPlanCard extends React.Component {
         const dateString = dateArr[0] + '/' + dateArr[1] + '/' + dateArr[2];
         
         return (
-            <div>
-                
-                        <React.Fragment>
-                            <h4>Date: {dateString}</h4>
-                            <h4>Plans:</h4>
-                            {
-                                trainingPlans && trainingPlans.length !== 0 &&
-                                trainingPlans.map((plan, idx) => {
-                                    return (
-                                        <div  key={idx}>
-                                            <li>{plan}</li>
-                                        </div>
-                                    );
-                                })
-                            }
-                        </React.Fragment>
-
-                </div>
+            <div style={{ margin:"10px auto", padding:"10px 10px", borderStyle:"solid", borderColor:"#bdbdbd" }}>
+                <h5>Date: {dateString}</h5>
+                <h5>Plans:</h5>
+                {
+                    trainingPlans && trainingPlans.length !== 0 &&
+                    trainingPlans.map((plan, idx) => {
+                        return (
+                            <div  key={idx}>
+                                <li>{plan}</li>
+                            </div>
+                        );
+                    })
+                }
+            </div>
         );
     }
 }
