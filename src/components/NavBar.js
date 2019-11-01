@@ -18,13 +18,9 @@ export class NavBar extends React.Component {
                             <Nav.Link href="/schedule">Game Schedule</Nav.Link>
                             <Nav.Link href="/trainingPlan">Training Plan</Nav.Link>
                             <Nav.Link href="/stats">Statistics</Nav.Link>
-                            <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-                                <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                                <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
-                                <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-                                <NavDropdown.Divider />
-                                <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
-                            </NavDropdown>
+                        </Nav>
+                        <Nav>
+                            <Nav.Link href="/login" className="justify-content-end">Login</Nav.Link>
                         </Nav>
                     </Navbar.Collapse>
                 </Navbar>

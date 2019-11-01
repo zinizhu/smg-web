@@ -13,21 +13,21 @@ export default class Homepage extends React.Component {
     }
 
     render() {
-        
+    
         return (
             <div>
                 <Header /> 
-                <GameSchedulesNavBar />
-                <Row>
-                    <Col xs={9}>
-                         something
-                    </Col>
-                    <Col xs={3}>
-                        <TrainingPlanNavCard />
-                    </Col>
-                </Row>
-                
-                
+                <div style={{ margin:"auto 100pxf" }}>
+                    <GameSchedulesNavBar />
+                    <Row>
+                        <Col xs={9}>
+                            something
+                        </Col>
+                        <Col xs={3}>
+                            <TrainingPlanNavCard />
+                        </Col>
+                    </Row>
+                </div> 
             </div>
         );
     }

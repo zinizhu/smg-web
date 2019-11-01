@@ -64,7 +64,7 @@ class GameScheduleCard extends React.Component {
                             onCancel={this.onCancel}
                         />
                     ) : (
-                        <GameScheduleDisplayCard 
+                        <GameSchseduleDisplayCard 
                             guestTeam={guestTeam}
                             score={score}
                             guestScore={guestScore}
