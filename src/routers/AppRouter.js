@@ -6,7 +6,8 @@ import { PlayerStatsPage } from '../components/playerStats/PlayerStatsPage';
 import { TrainingPlanSection } from '../components/trainingPlan/TrainingPlanSection';
 import GameSchedules from '../components/gameSchedule/GameSchedules';
 import { createBrowserHistory } from 'history';
-import { Login } from '../components/user/login/login';
+import { Login } from '../components/user/login/Login';
+import { Signup } from '../components/user/signup/Signup';
 
 const AppRouter = () => (
     <Router history={createBrowserHistory()}>
@@ -14,6 +15,7 @@ const AppRouter = () => (
             <Switch>
                 <Route path="/" component={ Homepage } exact={true}/>
                 <Route path="/login" component={ Login } exact={true} />
+                <Route path="/signup" component={ Signup } exact={true} />
                 <Route path="/schedule" component={ GameSchedules } exact={true} />
                 <Route path="/trainingPlan" component={ TrainingPlanSection } exact={true} />
                 <Route path="/stats" component={ Dashboard } exact={true}/>

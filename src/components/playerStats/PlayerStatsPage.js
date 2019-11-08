@@ -5,65 +5,6 @@ import { Table, Row } from 'react-bootstrap';
 import { StatsGraph } from './StatsGraph';
 import { NavBar } from '../NavBar';
 
-// const mock = {
-//     playerId: 1,
-//     playerNumber: '10',
-//     name: 'Zini Zhu',
-//     position: 'SG/PG',
-//     dateOfBirth: '1996/08/25',
-//     average: {
-//         "assist": 4,
-//         "block":2,
-//         "defensiveRebound": 4,
-//         "offensiveRebound": 1,
-//         "foul": 3,
-//         "point": 10,
-//         "fieldAttempt": 10,
-//         "fieldMade": 3,
-//         "threeAttempt": 2,
-//         "threeMade":1,
-//         "turnover":1,
-//         "steal":6,
-//         "freeThrowAttempt": 6,
-//         "freeThrowMade": 3
-//     },
-//     games: [{
-//         "guestTeam":"Ace",
-//         "gameDate": "2019-10-14",
-//         "assist": 4,
-//         "block":2,
-//         "defensiveRebound": 4,
-//         "offensiveRebound": 1,
-//         "foul": 3,
-//         "point": 10,
-//         "fieldAttempt": 10,
-//         "fieldMade": 3,
-//         "threeAttempt": 2,
-//         "threeMade":1,
-//         "turnover":1,
-//         "steal":6,
-//         "freeThrowAttempt": 6,
-//         "freeThrowMade": 3
-//     },{
-//         "guestTeam":"Blue Whale",
-//         "gameDate": "2019-9-14",
-//         "assist": 5,
-//         "block":0,
-//         "defensiveRebound": 6,
-//         "offensiveRebound": 2,
-//         "foul": 2,
-//         "point": 8,
-//         "fieldAttempt": 6,
-//         "fieldMade": 3,
-//         "threeAttempt": 1,
-//         "threeMade":0,
-//         "turnover":2,
-//         "steal":2,
-//         "freeThrowAttempt": 4,
-//         "freeThrowMade": 2
-//     }]
-// }
-
 export class PlayerStatsPage extends React.Component {
     constructor(props) {
         super(props);
