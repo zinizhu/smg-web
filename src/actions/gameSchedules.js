@@ -22,10 +22,28 @@ const loadGameSchedules = (dispatch, response) => {
 export const fetchGameSchedules = () => (dispatch) => {
     // fetch all game schedules from backend
     console.log('[GameSchedules] fetching game schedules...');
+
+    // add jwt token in header
+    // const options = {
+    //     headers: {
+    //         'Access-Control-Allow-Methods': '*',
+    //         'Access-Control-Allow-Origin': '*',
+    //         'Access-Control-Allow-Headers':'Origin, X-Requested-With, Content-Type, Access-Control-Allow-Origin, Authorization',
+    //         'Authorization': 'Bearer ' + sessionStorage.getItem('jwtToken')
+    //     }
+    //   };
+    axios.defaults.headers.Authorization = 'Bearer ' + sessionStorage.getItem('jwtToken');
+    console.log(axios.defaults.headers.Authorization);
     axios.get('http://localhost:8080/api/gameSchedule')
         .then((response) => {
             console.log('response is', response);
             loadGameSchedules(dispatch, response);
+        })
+        .catch((err) => {
+            console.log('[ERROR] :', err);
+            if (err.response) {
+                console.log('[ERROR]: ', err.response);
+            }
         })
 };
 

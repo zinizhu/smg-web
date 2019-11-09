@@ -1,10 +1,11 @@
 import React from 'react';
+import { connect } from 'react-redux';
 const axios = require('axios');
 
 import { Form, Button } from 'react-bootstrap';
 import { setAuthentication } from '../../../actions/authentication';
 
-export class Login extends React.Component {
+class Login extends React.Component {
     constructor(props) {
         super(props);
 
@@ -28,6 +29,8 @@ export class Login extends React.Component {
 
     onSubmit = (e) => {
         e.preventDefault();
+        const { onSubmitConfig } = this.props;
+
         const ele = document.getElementsByName('role'); 
         console.log(ele);
         ele.forEach((radio) => {
@@ -47,14 +50,23 @@ export class Login extends React.Component {
                 // store JWT token somewhere
                 const auth = {
                     userId: response.data.id,
+                    username: response.data.username,
                     jwtToken: response.data.accessToken
                 }
-                setAuthentication(auth);
+                onSubmitConfig(auth);
+
+                // use session storage
+                sessionStorage.setItem('userId', auth.userId);
+                sessionStorage.setItem('username', auth.username);
+                sessionStorage.setItem('jwtToken', auth.jwtToken);
+                this.props.history.push('/');
             }).catch((err) => {
-                if (err.response) {
-                    this.setState({success: false});
-                }
+                this.setState({success: false});
                 console.log('Error when logging in');
+                console.log(err);
+                if (err.response) {
+                    console.log(err.response);
+                }
             });
     }
 
@@ -87,4 +99,16 @@ export class Login extends React.Component {
     }
 }
 
-// onClick={this.onSubmit}
+const mapStateToProps = (state) => {
+    return {
+        gameSchedules: state.gameSchedules.gameSchedules
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        onSubmitConfig: auth => dispatch(setAuthentication(auth))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

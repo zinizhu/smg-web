@@ -3,7 +3,7 @@ const axios = require('axios');
 import { Table, Row } from 'react-bootstrap';
 
 import { StatsGraph } from './StatsGraph';
-import { NavBar } from '../NavBar';
+import NavBar from '../NavBar';
 
 export class PlayerStatsPage extends React.Component {
     constructor(props) {

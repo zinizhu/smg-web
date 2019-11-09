@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import GameScheduleCard from './GameScheduleCard';
 import { fetchGameSchedules } from '../../actions/gameSchedules';
 import AddGameSchedule from './AddGameSchedule';
-import { NavBar } from '../NavBar';
+import NavBar from '../NavBar';
 
 import {  Col, Row, Button } from 'react-bootstrap';
 

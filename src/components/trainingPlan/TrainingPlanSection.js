@@ -1,7 +1,7 @@
 import React from 'react';
 const axios = require('axios');
 
-import { NavBar } from '../NavBar';
+import NavBar from '../NavBar';
 import { TrainingPlanCard } from './TrainingPlanCard';
 import { AddTrainingPlan } from './AddTrainingPlan';
 

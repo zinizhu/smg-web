@@ -1,7 +1,7 @@
 import React from 'react';
 import { TeamSummary } from './TeamSummary';
 import { PlayerSummary } from './PlayerSummary';
-import { NavBar } from '../NavBar';
+import NavBar from '../NavBar';
 
 export class Dashboard extends React.Component {
     constructor(props) {

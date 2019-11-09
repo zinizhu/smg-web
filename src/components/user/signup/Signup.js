@@ -68,7 +68,6 @@ export class Signup extends React.Component {
             .then((response) => {
                 console.log(response);
                 this.setState({usernameExists: false, emailInUse: false, emailInvalid: false});
-
                 this.props.history.push('/');
             }).catch((err) => {
                 console.log(err.response);
@@ -139,4 +138,3 @@ export class Signup extends React.Component {
     }
 }
 
-// onClick={this.onSubmit}
