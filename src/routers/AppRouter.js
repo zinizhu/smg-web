@@ -9,6 +9,7 @@ import { createBrowserHistory } from 'history';
 import Login from '../components/user/login/Login';
 import { Signup } from '../components/user/signup/Signup';
 import Profile from '../components/profile/Profile';
+import { GameDetailsSection } from '../components/gameDetails/GameDetailsSection';
 
 const AppRouter = () => (
     <Router history={createBrowserHistory()}>
@@ -19,6 +20,7 @@ const AppRouter = () => (
                 <Route path="/signup" component={ Signup } exact={true} />
                 <Route path="/profile" component={ Profile } exact={true} />
                 <Route path="/schedule" component={ GameSchedules } exact={true} />
+                <Route path="/gameDetails" component={ GameDetailsSection } exact={true} />
                 <Route path="/trainingPlan" component={ TrainingPlanSection } exact={true} />
                 <Route path="/stats" component={ Dashboard } exact={true}/>
                 <Route path="/stats/:id" component={PlayerStatsPage} exact={true} />

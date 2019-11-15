@@ -23,6 +23,7 @@ export class PlayerStatsPage extends React.Component {
 
     componentDidMount() {
         // retrieve player stats
+        axios.defaults.headers.Authorization = 'Bearer ' + sessionStorage.getItem('jwtToken');
         const playerId = this.props.match.params.id;
         const url = `http://localhost:8080/api/playerStats/playerId/${playerId}`;
         axios.get(url)
@@ -242,11 +243,3 @@ export class PlayerStatsPage extends React.Component {
         );
     }
 }
-
-// const mapStateToProps = (state, props) => {
-//     return {
-//         gameSchedules: state.gameSchedules.gameSchedules
-//     }
-// }
-   
-// export default connect(mapStateToProps)(GameScheduleCard);

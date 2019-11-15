@@ -23,15 +23,6 @@ export const fetchGameSchedules = () => (dispatch) => {
     // fetch all game schedules from backend
     console.log('[GameSchedules] fetching game schedules...');
 
-    // add jwt token in header
-    // const options = {
-    //     headers: {
-    //         'Access-Control-Allow-Methods': '*',
-    //         'Access-Control-Allow-Origin': '*',
-    //         'Access-Control-Allow-Headers':'Origin, X-Requested-With, Content-Type, Access-Control-Allow-Origin, Authorization',
-    //         'Authorization': 'Bearer ' + sessionStorage.getItem('jwtToken')
-    //     }
-    //   };
     axios.defaults.headers.Authorization = 'Bearer ' + sessionStorage.getItem('jwtToken');
     console.log(axios.defaults.headers.Authorization);
     axios.get('http://localhost:8080/api/gameSchedule')
@@ -57,6 +48,7 @@ export const addOrUpdateNewGameSchedule = data => (dispatch) => {
     console.log('New game schedule:', data);
     if (data.gameId !== undefined) {
         // update existing schedule
+        axios.defaults.headers.Authorization = 'Bearer ' + sessionStorage.getItem('jwtToken');
         axios({
             url:'http://localhost:8080/api/gameSchedule', 
             data: data,
@@ -75,6 +67,7 @@ export const addOrUpdateNewGameSchedule = data => (dispatch) => {
     else {
         // save new schedule
         console.log('in post');
+        axios.defaults.headers.Authorization = 'Bearer ' + sessionStorage.getItem('jwtToken');
         axios({
             method: 'post',
             data: data,
@@ -88,6 +81,7 @@ export const addOrUpdateNewGameSchedule = data => (dispatch) => {
 };
 
 export const deleteGameScheduleById = gameId => dispatch => {
+    axios.defaults.headers.Authorization = 'Bearer ' + sessionStorage.getItem('jwtToken');
     axios.delete(`http://localhost:8080/api/gameSchedule/${gameId}`)
         .then((res) => {
             loadGameSchedules(dispatch, res);

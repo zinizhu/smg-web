@@ -5,6 +5,7 @@ import { Row, Col } from 'react-bootstrap';
 import { GameScheduleNavCard } from './GameScheduleNavCard';
 import { fetchGameSchedules } from '../../actions/gameSchedules';
 
+
 class GameSchedulesNavBar extends React.Component {
     constructor(props) {
         super(props);

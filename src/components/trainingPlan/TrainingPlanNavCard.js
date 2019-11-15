@@ -17,7 +17,7 @@ export class TrainingPlanNavCard extends React.Component {
 
     componentDidMount = () => {
         const url = 'http://localhost:8080/api/trainingPlan';
-        
+        axios.defaults.headers.Authorization = 'Bearer ' + sessionStorage.getItem('jwtToken');
         axios.get(url)
             .then((response) => {
                 const data = response.data;

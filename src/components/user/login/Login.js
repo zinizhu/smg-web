@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 const axios = require('axios');
 
 import { Form, Button } from 'react-bootstrap';
@@ -94,6 +95,8 @@ class Login extends React.Component {
                 <Button variant="primary" onClick={this.onSubmit}>
                     Login
                 </Button>
+                <p><Link to="/signup">Don't have an account? Sign up here.</Link></p>
+                <p><Link to="/">Back to Main Page</Link></p>
             </Form>
         );
     }

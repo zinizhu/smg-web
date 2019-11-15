@@ -1,5 +1,6 @@
 import React from 'react';
 const axios = require('axios');
+import { Link } from 'react-router-dom';
 
 import { Form, Button } from 'react-bootstrap';
 
@@ -57,14 +58,15 @@ export class Signup extends React.Component {
             return;
         }
 
+        const role = 'ROLE_' + this.state.role.toUpperCase();
         const requestData = {
             username: this.state.username,
             email: this.state.email,
             password: this.state.password,
-            role: this.state.role.toUpperCase()
+            role: role
         }
         console.log(requestData);
-        axios.post('http://localhost:8080/api/auth/signup ', requestData)
+        axios.post('http://localhost:8080/api/auth/signup', requestData)
             .then((response) => {
                 console.log(response);
                 this.setState({usernameExists: false, emailInUse: false, emailInvalid: false});
@@ -133,6 +135,7 @@ export class Signup extends React.Component {
                 <Button variant="primary" onClick={this.onSubmit}>
                     Signup
                 </Button>
+                <p><Link to="/">Back to Main Page</Link></p>
             </Form>
         );
     }

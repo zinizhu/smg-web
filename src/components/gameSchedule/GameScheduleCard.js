@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { createBrowserHistory } from 'history';
 
 import AddGameSchedule from './AddGameSchedule';
 import { GameScheduleDisplayCard } from './GameScheduleDisplayCard';
@@ -41,6 +40,10 @@ class GameScheduleCard extends React.Component {
         dispatch(setGameSchedules(schedule));
     }
 
+    onClickDetails = () => {
+        this.props.history.push('/gameDetails');
+    }
+
     onCancel = () => {
         this.setState({buttonClicked: false});
     }
@@ -64,7 +67,8 @@ class GameScheduleCard extends React.Component {
                             onCancel={this.onCancel}
                         />
                     ) : (
-                        <GameSchseduleDisplayCard 
+                        <GameScheduleDisplayCard 
+                            mygameId={gameId}
                             guestTeam={guestTeam}
                             score={score}
                             guestScore={guestScore}

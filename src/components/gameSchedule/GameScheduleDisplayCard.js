@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 import { Row, Col, Button, Card } from 'react-bootstrap'
 
@@ -15,6 +16,11 @@ export class GameScheduleDisplayCard extends React.Component {
   onClickDelete = () => {
     const { onClickDelete } = this.props
     onClickDelete()
+  }
+
+  onClickDetails = () => {
+    const { onClickDetails } = this.props
+    onClickDetails() 
   }
 
   render () {
@@ -50,9 +56,17 @@ export class GameScheduleDisplayCard extends React.Component {
           <Col>
             <Button
                 style={{display:"block", margin: "0 auto", textAlign:"center"}}
+                // onClick={this.onClickDetails}
+            >
+                <Link style={{color: "white"}} to='/gameDetails'>Details</Link>
+            </Button>
+          </Col>
+          <Col>
+            <Button
+                style={{display:"block", margin: "0 auto", textAlign:"center"}}
                 onClick={this.onClickDelete}
             >
-                Delete
+              Delete
             </Button>
           </Col>
           </Row>

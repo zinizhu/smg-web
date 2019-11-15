@@ -14,6 +14,7 @@ export class PlayerSummary extends React.Component {
 
     componentDidMount() {
         // retrieve player profiles
+        axios.defaults.headers.Authorization = 'Bearer ' + sessionStorage.getItem('jwtToken');
         const url = `http://localhost:8080/api/profile`;
         axios.get(url)
             .then((response) => {

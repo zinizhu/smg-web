@@ -15,8 +15,8 @@ export class TrainingPlanSection extends React.Component {
     }
 
     componentDidMount = () => {
+        axios.defaults.headers.Authorization = 'Bearer ' + sessionStorage.getItem('jwtToken');
         const url = 'http://localhost:8080/api/trainingPlan';
-        
         axios.get(url)
             .then((response) => {
                 const data = response.data;
@@ -25,7 +25,7 @@ export class TrainingPlanSection extends React.Component {
             })
             .catch((e) => {
                 console.log(e);
-            })
+            })  
     }
 
     render() {
