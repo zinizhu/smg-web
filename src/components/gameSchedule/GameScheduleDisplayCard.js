@@ -24,8 +24,9 @@ export class GameScheduleDisplayCard extends React.Component {
   }
 
   render () {
-    const { guestTeam, score, guestScore, location, gameDate } = this.props
+    const { guestTeam, score, guestScore, location, gameDate, rawDateString } = this.props
     const dateString = gameDate[0] + '/' + gameDate[1] + '/' + gameDate[2]
+    const gameDetailsUrl = '/gameDetails/' + guestTeam + '/' + rawDateString;
     return (
       <div style={{ width: '21rem', margin: '20px 10px' }}>
         <Card className='text-center' style={{ width: '21rem'}}>
@@ -58,7 +59,7 @@ export class GameScheduleDisplayCard extends React.Component {
                 style={{display:"block", margin: "0 auto", textAlign:"center"}}
                 // onClick={this.onClickDetails}
             >
-                <Link style={{color: "white"}} to='/gameDetails'>Details</Link>
+                <Link style={{color: "white"}} to={gameDetailsUrl}>Details</Link>
             </Button>
           </Col>
           <Col>

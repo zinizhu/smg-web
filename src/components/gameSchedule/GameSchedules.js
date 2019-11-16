@@ -42,7 +42,7 @@ class GameSchedules extends React.Component {
                     
                         gameSchedules && gameSchedules.length !== 0 && 
                         gameSchedules.map((schedule, idx) => {
-                            const { gameId, guestTeam, score, guestScore, location, gameDate } = schedule;
+                            const { gameId, guestTeam, score, guestScore, location, gameDate, rawDateString } = schedule;
                             console.log("Inside div, schedule: ", schedule);
                             return (
                                 <Col xs={4}>
@@ -54,6 +54,7 @@ class GameSchedules extends React.Component {
                                         guestScore={guestScore}
                                         location={location}
                                         gameDate={gameDate}
+                                        rawDateString={rawDateString}
                                         removeSchedule={this.removeSchedule}
                                     />
                                 </Col>
