@@ -27,6 +27,7 @@ export class GameScheduleDisplayCard extends React.Component {
     const { guestTeam, score, guestScore, location, gameDate, rawDateString, gameId } = this.props
     const dateString = gameDate[0] + '/' + gameDate[1] + '/' + gameDate[2]
     const gameDetailsUrl = '/gameDetails/' + guestTeam + '/' + rawDateString + '/' + gameId;
+    const role = sessionStorage.getItem('userRole');
     return (
       <div style={{ width: '21rem', margin: '20px 10px' }}>
         <Card className='text-center' style={{ width: '21rem'}}>
@@ -47,6 +48,7 @@ export class GameScheduleDisplayCard extends React.Component {
           <Col xs={3}>{guestTeam}</Col>
           </Row>
           <Row>
+          {role === 'ROLE_COACH' &&
           <Col>
             <Button
                 style={{display:"block", margin: "0 auto", textAlign:"center"}}
@@ -54,6 +56,7 @@ export class GameScheduleDisplayCard extends React.Component {
                 Edit
             </Button>
           </Col>
+          }
           <Col>
             <Button
                 style={{display:"block", margin: "0 auto", textAlign:"center"}}
@@ -61,6 +64,7 @@ export class GameScheduleDisplayCard extends React.Component {
                 <Link style={{color: "white"}} to={gameDetailsUrl}>Details</Link>
             </Button>
           </Col>
+          {role === 'ROLE_COACH' &&
           <Col>
             <Button
                 style={{display:"block", margin: "0 auto", textAlign:"center"}}
@@ -69,6 +73,7 @@ export class GameScheduleDisplayCard extends React.Component {
               Delete
             </Button>
           </Col>
+          }
           </Row>
         </Card>
       </div>

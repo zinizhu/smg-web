@@ -1,5 +1,5 @@
 import React from 'react';
-import { Router, BrowserRouter, Switch, Route, withRouter } from "react-router-dom";
+import { Router, Switch, Route, withRouter } from "react-router-dom";
 import Homepage from '../components/Homepage';
 import { Dashboard } from '../components/playerStats/Dashboard';
 import { PlayerStatsPage } from '../components/playerStats/PlayerStatsPage';

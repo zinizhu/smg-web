@@ -53,11 +53,9 @@ export class TrainingPlanNavCard extends React.Component {
                     trainingPlans && trainingPlans.length !== 0 &&
                     trainingPlans.map((plan, idx) => {
                         return (
-                            <React.Fragment>
                                 <div  key={idx}>
                                     <li>{plan}</li>
                                 </div>
-                            </React.Fragment>
                         );
                     })
                 }

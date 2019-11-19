@@ -13,20 +13,29 @@ export default class Homepage extends React.Component {
     }
 
     render() {
-    
+        const jwtToken = sessionStorage.getItem('jwtToken');
         return (
             <div>
                 <Header /> 
                 <div style={{ margin:"auto 100pxf" }}>
-                    <GameSchedulesNavBar />
-                    <Row>
-                        <Col xs={9}>
-                            something
-                        </Col>
-                        <Col xs={3}>
-                            <TrainingPlanNavCard />
-                        </Col>
-                    </Row>
+                    {jwtToken ?  (
+                        <React.Fragment>
+                        <GameSchedulesNavBar />
+                        <Row>
+                            <Col xs={9}>
+                                something
+                            </Col>
+                            <Col xs={3}>
+                                <TrainingPlanNavCard />
+                            </Col>
+                        </Row>
+                        </React.Fragment>
+                    ): (
+                        <div style={{marginBottom: "200px", textAlign:"center"}}>
+                            <h3>Welcome to SMG Official Website</h3>
+                        </div>
+                    )
+                }
                 </div> 
             </div>
         );

@@ -8,6 +8,15 @@ export class Dashboard extends React.Component {
         super(props);
     }
 
+    componentDidMount() {
+        const jwtToken = sessionStorage.getItem('jwtToken');
+        const role = sessionStorage.getItem('userRole');
+
+        if (jwtToken === null || role === null) {
+            this.props.history.push('/login');
+        }
+    }
+
     render() {
 
         return (

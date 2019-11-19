@@ -20,6 +20,13 @@ class GameSchedules extends React.Component {
     }
 
     componentDidMount() {
+        const jwtToken = sessionStorage.getItem('jwtToken');
+        const role = sessionStorage.getItem('userRole');
+        console.log('[GameSchedule] jwtToken', jwtToken);
+        if (jwtToken === null || role === null) {
+            this.props.history.push('/login');
+        }
+
         const { dispatch } = this.props;
         dispatch(fetchGameSchedules());
     }
@@ -31,6 +38,7 @@ class GameSchedules extends React.Component {
     render() {
         const { gameSchedules } = this.props;
         console.log('gameSchedules', gameSchedules);
+        const role = sessionStorage.getItem('userRole');
 
         return (
             <React.Fragment>
@@ -63,11 +71,13 @@ class GameSchedules extends React.Component {
                     
                 }
                 </Row>
+                { role === 'ROLE_COACH' &&
                 <Row>
                     <Col xs={6}>
                         <AddGameSchedule />
                     </Col>
                 </Row>
+                }
                 <Row style={{marginTop: "20px"}}>
                     <Col>
                         <Link style={{color:"#79a6d2"}} to='/'>Go Back</Link>

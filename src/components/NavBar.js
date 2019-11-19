@@ -9,9 +9,10 @@ class NavBar extends React.Component {
     }
 
     onClickLogout = () => {
-        sessionStorage.removeItem('username');
-        sessionStorage.removeItem('userId');
-        sessionStorage.removeItem('jwtToken');
+        // sessionStorage.removeItem('username');
+        // sessionStorage.removeItem('userId');
+        // sessionStorage.removeItem('jwtToken');
+        sessionStorage.clear();
     }
 
     render() {

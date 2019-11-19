@@ -224,6 +224,12 @@ export class GameDetailsSection extends React.Component {
         .catch((e) => {
             console.log('[GameDetailsSection] Error uploading game stats.');
         })
+
+        window.location.reload(false);
+    }
+
+    onClickBack = () => {
+        this.props.history.push('/');
     }
 
     render() {
@@ -394,8 +400,10 @@ export class GameDetailsSection extends React.Component {
                                 </Button>
                             </Form>
                     </div>
-                }
-                <Link style={{color:"#79a6d2"}} to='/gameSchedule'>Go Back</Link>
+                }            
+                <Button variant="primary" onClick={this.onClickBack}>
+                    Back
+                </Button>
                 </div>
             </div>
             
