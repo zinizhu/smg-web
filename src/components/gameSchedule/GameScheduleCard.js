@@ -68,7 +68,7 @@ class GameScheduleCard extends React.Component {
                         />
                     ) : (
                         <GameScheduleDisplayCard 
-                            mygameId={gameId}
+                            gameId={gameId}
                             guestTeam={guestTeam}
                             score={score}
                             guestScore={guestScore}

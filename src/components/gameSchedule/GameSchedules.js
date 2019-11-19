@@ -45,7 +45,7 @@ class GameSchedules extends React.Component {
                             const { gameId, guestTeam, score, guestScore, location, gameDate, rawDateString } = schedule;
                             console.log("Inside div, schedule: ", schedule);
                             return (
-                                <Col xs={4}>
+                                <Col xs={4} key={idx}>
                                     <GameScheduleCard 
                                         key={idx}
                                         gameId={gameId}

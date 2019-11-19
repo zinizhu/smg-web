@@ -25,12 +25,25 @@ export class PlayerStatsPage extends React.Component {
         // retrieve player stats
         axios.defaults.headers.Authorization = 'Bearer ' + sessionStorage.getItem('jwtToken');
         const playerId = this.props.match.params.id;
+        console.log('[PlayerStatPage] playerId: ', playerId);
         const url = `http://localhost:8080/api/playerStats/playerId/${playerId}`;
         axios.get(url)
             .then((response) => {
                 const data = response.data;
-                console.log(data);
-                this.setState({...data});
+                console.log('[PlayerStatPage] data: ',data);
+                //this.setState({...data});
+
+                var average = data.average;
+                const updatedAverage = {
+                    point: average.point.toFixed(1),
+                    assist: average.assist.toFixed(1),
+                    block: average.block.toFixed(1),
+                    steal: average.steal.toFixed(1),
+                    defensiveRebound: parseFloat(average.defensiveRebound.toFixed(1)),
+                    offensiveRebound: parseFloat(average.offensiveRebound.toFixed(1))
+                };
+
+                this.setState({...data, average: updatedAverage});
             })
             .catch((e) => {
                 console.log('Fail to fetch player stats. (id = ', playerId, ')');
@@ -107,7 +120,12 @@ export class PlayerStatsPage extends React.Component {
 
     render() {
         const { playerNumber, name, position, dateOfBirth, average, games } = this.state;
+        console.log(average);
         const rebound = average.defensiveRebound + average.offensiveRebound;
+        const avgPoint = average.point;
+        const avgAssist = average.assist;
+        const avgBlock = average.block;
+        const avgSteal = average.steal;
         const dateOfBirthObj = new Date(dateOfBirth);
         const dateString = dateOfBirthObj.getUTCFullYear() + '/' + dateOfBirthObj.getMonth() + '/' + dateOfBirthObj.getDate();
         return (
@@ -146,11 +164,11 @@ export class PlayerStatsPage extends React.Component {
                     </thead>
                     <tbody>
                         <tr>
-                            <td>{average.point}</td>
-                            <td>{average.assist}</td>
+                            <td>{avgPoint}</td>
+                            <td>{avgAssist}</td>
                             <td>{rebound}</td>
-                            <td>{average.steal}</td>
-                            <td>{average.block}</td>
+                            <td>{avgSteal}</td>
+                            <td>{avgBlock}</td>
                         </tr>
                     </tbody>
                 </Table>
@@ -190,9 +208,9 @@ export class PlayerStatsPage extends React.Component {
                                 const month = dateObj.getMonth();
                                 const date = dateObj.getDate();
                                 const dateString = year+'/'+month+'/'+date;
-                                const freeThrowPercentage = freeThrowAttempt === 0 ? '-' : (freeThrowMade/freeThrowAttempt).toFixed(1);
-                                const fieldGoalPercentage = fieldAttempt === 0 ? '-' : (fieldMade/fieldAttempt).toFixed(1);
-                                const threePercentage = threeAttempt === 0 ? '-' : (threeMade/threeAttempt).toFixed(1);
+                                const freeThrowPercentage = freeThrowAttempt === 0 ? '-' : (freeThrowMade/freeThrowAttempt).toFixed(3);
+                                const fieldGoalPercentage = fieldAttempt === 0 ? '-' : (fieldMade/fieldAttempt).toFixed(3);
+                                const threePercentage = threeAttempt === 0 ? '-' : (threeMade/threeAttempt).toFixed(3);
                                 const rebound = defensiveRebound + offensiveRebound;
                                 return (
                                     <React.Fragment key={idx}>

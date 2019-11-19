@@ -52,14 +52,18 @@ class Login extends React.Component {
                 const auth = {
                     userId: response.data.id,
                     username: response.data.username,
-                    jwtToken: response.data.accessToken
+                    jwtToken: response.data.accessToken,
+                    role: response.data.role
                 }
                 onSubmitConfig(auth);
+
+                console.log('[Authentication] ', auth);
 
                 // use session storage
                 sessionStorage.setItem('userId', auth.userId);
                 sessionStorage.setItem('username', auth.username);
                 sessionStorage.setItem('jwtToken', auth.jwtToken);
+                sessionStorage.setItem('userRole', auth.role);
                 this.props.history.push('/');
             }).catch((err) => {
                 this.setState({success: false});

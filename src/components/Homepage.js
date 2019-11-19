@@ -32,6 +32,3 @@ export default class Homepage extends React.Component {
         );
     }
 }
-
-// <GameSchedules />   
-// <TrainingPlanSection />
