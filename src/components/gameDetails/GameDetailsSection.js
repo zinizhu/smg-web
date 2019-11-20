@@ -229,7 +229,7 @@ export class GameDetailsSection extends React.Component {
     }
 
     onClickBack = () => {
-        this.props.history.push('/');
+        this.props.history.push('/gameSchedule');
     }
 
     render() {

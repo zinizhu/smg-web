@@ -42,7 +42,7 @@ export class TrainingPlanSection extends React.Component {
             <React.Fragment>
                 <NavBar />
                 <div style={{ margin:"30px 30px" }}>
-                    <h3>Game Schedules</h3>
+                    <h3>Training Plans</h3>
                     {
                         plans && plans.length !== 0 && 
                         plans.map((plan, idx) => {

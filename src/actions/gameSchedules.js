@@ -10,6 +10,9 @@ const loadGameSchedules = (dispatch, response) => {
     // format datel
     gameSchedules.map((schedule) => {
         schedule.rawDateString = schedule.gameDate;
+        const dateObject = new Date(schedule.gameDate);
+        schedule.dateObject = dateObject;
+        console.log('Date Object ', dateObject);
         let gameDateArr = schedule.gameDate.split(/[- T : .]/);
         console.log('Modified Date Arr:', gameDateArr);
 

@@ -12,40 +12,21 @@ export class TrainingPlanCard extends React.Component {
         }
     }
 
-    
-
-    // onClickEdit = () => {
-    //     this.setState({buttonClicked: true});
-    // }
-
-    // onClickDelete = () => {
-    //     const { dispatch, gameId, gameSchedules, removeSchedule, history } = this.props;
-    //     dispatch(deleteGameScheduleById(gameId));
-    //     const schedule = gameSchedules.filter((s) => {
-    //         console.log('id:', gameId);
-    //         console.log(s.gameId !== gameId);
-    //         return s.gameId !== gameId;
-    //     });
-    //     console.log(schedule);m
-    //     dispatch(setGameSchedules(schedule));
-    // }
-
-    // onCancel = () => {
-    //     this.setState({buttonClicked: false});
-    // }
-
     render() {
         const { id, trainingPlans, date, summary  } = this.props;
-        console.log('Init date', date.split('-'));
-        let dateArr = date.split(/[- T : .]/);
+        const dateObject = new Date(date);
 
-        dateArr = dateArr.slice(0,6);
-        console.log('dateArr', dateArr);
-        const dateString = dateArr[0] + '/' + dateArr[1] + '/' + dateArr[2];
+        const dateString = dateObject.getFullYear() + '/' + (dateObject.getMonth()+1) + '/' + dateObject.getDate();
+        const minute = dateObject.getMinutes();
+        const hour = dateObject.getHours();
+        const updatedMinute = minute < 10 ? '0' + minute : minute;
+        const updatedHour = hour < 10 ? '0' + hour : hour;
+        const time = updatedHour + ':' + updatedMinute;
         
         return (
             <div style={{ margin:"10px auto", padding:"10px 10px", borderStyle:"solid", borderColor:"#bdbdbd" }}>
                 <h5>Date: {dateString}</h5>
+                <p>Date: {time}</p>
                 <h5>Plans:</h5>
                 {
                     trainingPlans && trainingPlans.length !== 0 &&

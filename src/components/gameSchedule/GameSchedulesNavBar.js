@@ -36,7 +36,7 @@ class GameSchedulesNavBar extends React.Component {
                         gameToDisplay.map((game, idx) => {
                             return (
                                 <React.Fragment key={idx}>
-                                    <Col xs={3}>
+                                    <Col>
                                         <GameScheduleNavCard game={game} />
                                     </Col>
                                 </React.Fragment>

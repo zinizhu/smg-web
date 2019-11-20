@@ -49,7 +49,7 @@ class GameScheduleCard extends React.Component {
     }
 
     render() {
-        const { gameId, guestTeam, score, guestScore, location, gameDate, rawDateString } = this.props;
+        const { gameId, guestTeam, score, guestScore, location, gameDate, rawDateString, dateObject } = this.props;
         const { buttonClicked } = this.state;
         console.log('[Inside GameScheduleCard]', guestTeam, score, guestScore, location, gameDate);
         return (
@@ -63,6 +63,7 @@ class GameScheduleCard extends React.Component {
                             guestScore={guestScore}
                             location={location}
                             gameDate={gameDate}
+                            dateObject={dateObject}
                             isEdit={true}
                             onCancel={this.onCancel}
                         />
@@ -74,6 +75,7 @@ class GameScheduleCard extends React.Component {
                             guestScore={guestScore}
                             location={location}
                             gameDate={gameDate}
+                            dateObject={dateObject}
                             rawDateString={rawDateString}
                             onClickEdit={this.onClickEdit}
                             onClickDelete={this.onClickDelete}

@@ -1,5 +1,6 @@
 import React from 'react';
 import Calendar from 'react-calendar';
+import TimePicker from 'react-time-picker'
 const axios = require('axios');
 
 import { Form, Col, Button } from 'react-bootstrap';
@@ -10,8 +11,8 @@ export class AddTrainingPlan extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            date: new Date(),
-            time: new Date().getTime(),
+            date: '',
+            time: '',
             dateSelected: false,
             items: [{
                 id: 1,
@@ -51,10 +52,15 @@ export class AddTrainingPlan extends React.Component {
         this.setState({items: newItems});
     }
 
-    onDateChange = (date) => {
-        console.log('Date: ', date);
-        this.setState({ date: date, dateSelected: false });
-    };
+    onDateChange = (dateObj) => {
+        console.log('Date: ', dateObj);
+        const dateString = dateObj.getFullYear() + '/' + (dateObj.getMonth()+1) + '/' + dateObj.getDate();
+        this.setState({ date: dateString, dateSelected: false });
+    }
+
+    onTimeChange = (time) => {
+        this.setState({time: time});
+    }
 
     onFocus = () => {
         this.setState({dateSelected: true});
@@ -73,15 +79,18 @@ export class AddTrainingPlan extends React.Component {
         const itemsStringArr = this.state.items.map((item) => {
             return item.content;
         })
+
+        const { date, time } = this.state;
         const trainingPlan = itemsStringArr.join(';');
-        // console.log(trainingPlan);
+        const timeString = (new Date(date + ' ' + time)).toISOString();
+        console.log(timeString);
         const request = {
-            date: this.state.date,
+            date: timeString,
             trainingPlan: trainingPlan,
             summary: ''
         }
 
-        /// post back
+        // post back
         axios({
             method: 'post',
             data: request,
@@ -90,12 +99,11 @@ export class AddTrainingPlan extends React.Component {
         then((res) => {
             console.log('New training plan added.');
         })
-
     }
 
     render() {
 
-        const { date, time, dateSelected, items } = this.state;
+        const { date, dateSelected, items } = this.state;
 
         return (
             <div style={{ margin:"10px auto", padding:"10px 10px", borderStyle:"solid", borderColor:"#bdbdbd", borderWidth:"thick", borderRadius:"8px" }}>
@@ -104,18 +112,21 @@ export class AddTrainingPlan extends React.Component {
                     <Form.Row>
                         <Form.Group as={Col} controlId="date">
                             <Form.Label>Date</Form.Label>
-                            <Form.Control placeholder="Select practice date" onChange={this.onChange} onFocus={this.onFocus} value={date.toLocaleDateString()}/>
+                            <Form.Control placeholder="Select practice date" onChange={this.onChange} onFocus={this.onFocus} value={date}/>
                             {
                                 dateSelected && 
                                 <Calendar   
-                                    value={date}
+                                    value={new Date()}
                                     onChange={this.onDateChange}
                                 />
                             }
                         </Form.Group>
                         <Form.Group as={Col} controlId="time">
                             <Form.Label>Time</Form.Label>
-                            <Form.Control placeholder="Enter practice time"/>
+                            <TimePicker
+                                onChange={this.onTimeChange}
+                                value={this.state.gameTime}
+                            />
                         </Form.Group>
                     </Form.Row>
 

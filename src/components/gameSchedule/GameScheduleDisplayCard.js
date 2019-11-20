@@ -24,9 +24,14 @@ export class GameScheduleDisplayCard extends React.Component {
   }
 
   render () {
-    const { guestTeam, score, guestScore, location, gameDate, rawDateString, gameId } = this.props
-    const dateString = gameDate[0] + '/' + gameDate[1] + '/' + gameDate[2]
+    const { guestTeam, score, guestScore, location, gameDate, rawDateString, gameId, dateObject } = this.props;
     const gameDetailsUrl = '/gameDetails/' + guestTeam + '/' + rawDateString + '/' + gameId;
+    const dateString = dateObject.getFullYear() + '/' + (dateObject.getMonth()+1) + '/' + dateObject.getDate();
+    const minute = dateObject.getMinutes();
+    const hour = dateObject.getHours();
+    const updatedMinute = minute < 10 ? '0' + minute : minute;
+    const updatedHour = hour < 10 ? '0' + hour : hour;
+    const time = updatedHour + ':' + updatedMinute;
     const role = sessionStorage.getItem('userRole');
     return (
       <div style={{ width: '21rem', margin: '20px 10px' }}>
@@ -37,6 +42,9 @@ export class GameScheduleDisplayCard extends React.Component {
           <Col xs={6}>
             <Card.Body>
               <Card.Title>{dateString}</Card.Title>
+              <Card.Text>
+                {time}
+              </Card.Text>
               <Card.Text>
                 {score} - {guestScore}
               </Card.Text>

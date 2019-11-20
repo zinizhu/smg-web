@@ -1,5 +1,6 @@
 import React from 'react';
 import Calendar from 'react-calendar';
+import TimePicker from 'react-time-picker'
 import { connect } from 'react-redux';
 
 import { Form, Col, Button } from 'react-bootstrap';
@@ -14,6 +15,7 @@ class AddGameSchedule extends React.Component {
             guestTeam:'',
             location:'',
             gameDate: new Date(),
+            gameTime: '',
             score: 0,
             guestScore: 0,
             dateSelected: false,
@@ -45,11 +47,15 @@ class AddGameSchedule extends React.Component {
 
     onDateChange = (dateObj) => {
         console.log('selected date:', dateObj);
-        console.log('month:', dateObj.getMonth());
-        console.log('day:', dateObj.getDay());
         const dateString = dateObj.getFullYear() + '/' + (dateObj.getMonth()+1) + '/' + dateObj.getDate();
+        console.log('DateString:', dateString);
         this.setState({ gameDate: dateString, dateSelected: false });
     };
+
+    onTimeChange = (time) => {
+        console.log('Game Time: ', time);
+        this.setState({gameTime: time});
+    }
 
     onNumChange = (e) => {
         const id = e.target.id;
@@ -78,9 +84,9 @@ class AddGameSchedule extends React.Component {
 
     onSubmit = () => {
         const { dispatch } = this.props;
-        const { guestTeam, location, gameDate, score, guestScore } = this.state;
+        const { guestTeam, location, gameDate, gameTime, score, guestScore } = this.state;
         const gameId = this.props.gameId;
-        const gameDateString = (new Date(gameDate)).toISOString();
+        const gameDateString = (new Date(gameDate + ' ' + gameTime)).toISOString();
         const data = { gameId, guestTeam, location, score, guestScore, gameDate:gameDateString };
         console.log('New game schedule:', data);
         dispatch(addOrUpdateNewGameSchedule(data));
@@ -102,11 +108,19 @@ class AddGameSchedule extends React.Component {
                             <Form.Control placeholder="Guest Team" onChange={this.onChange} onFocus={this.onFocus} value={this.state.gameDate}/>
                             {
                                 this.state.dateSelected && 
-                                <Calendar   
+                                    <Calendar   
                                     value={new Date()}
                                     onChange={this.onDateChange}
                                 />
                             }
+                        </Form.Group>
+
+                        <Form.Group as={Col} controlId="gameTime">
+                            <Form.Label>Game Time</Form.Label>
+                            <TimePicker
+                                onChange={this.onTimeChange}
+                                value={this.state.gameTime}
+                            />
                         </Form.Group>
 
                         <Form.Group as={Col} controlId="score">

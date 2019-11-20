@@ -32,19 +32,23 @@ export class TrainingPlanNavCard extends React.Component {
 
     render() {
         const { trainingPlans, date  } = this.state.plan;
-        let dateArr = date.split(/[- T : .]/);
+        const dateObject = new Date(date);
 
-        dateArr = dateArr.slice(0,6);
-        const dateString = dateArr[0] + '/' + dateArr[1] + '/' + dateArr[2];
+        const dateString = dateObject.getFullYear() + '/' + (dateObject.getMonth()+1) + '/' + dateObject.getDate();
+        const minute = dateObject.getMinutes();
+        const hour = dateObject.getHours();
+        const updatedMinute = minute < 10 ? '0' + minute : minute;
+        const updatedHour = hour < 10 ? '0' + hour : hour;
+        const time = updatedHour + ':' + updatedMinute;
         
         return (
             <div>
                 <Card style={{ width: '18rem' }}>
                 <Card.Header>Training Plan</Card.Header>
                 <Card.Body>
-                    <Card.Title>Date</Card.Title>
+                    <Card.Title>Time</Card.Title>
                     <Card.Text>
-                        {dateString}
+                        {dateString} {time}
                     </Card.Text>
                 </Card.Body>
                 <Card.Body>
