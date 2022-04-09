@@ -27,7 +27,7 @@
     "file-loader": "^4.2.0",
     "leaflet": "^1.5.1",
     "live-server": "^1.2.1",
-    "moment": "^2.24.0",
+    "moment": "^2.29.2",
     "node-sass": "^4.12.0",
     "normalize.css": "^8.0.1",
     "plotly.js": "^1.49.5",
